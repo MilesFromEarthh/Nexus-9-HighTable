@@ -10,6 +10,7 @@
             color: green;
             font-family: 'Courier New', monospace;
             text-align: left;
+            font-size: 15px;
             padding: 0% 0%;
         }
         #buttons {
@@ -21,7 +22,7 @@
             padding: 5px 15px;
             border: 2px solid black;
             cursor: pointer;
-          }
+        }
         .button.decline {
             background-color: red;
             color: white;
@@ -31,13 +32,13 @@
             color: white;
         }
         .fullscreen {
-            font-size: 0.55vw; /* Adjust this as needed */
+            font-size: 0.55vw;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100vw;
-            text-align: center;
+            text-align: left;
         }
     </style>
 </head>
@@ -149,8 +150,7 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-
-    `;  // Replace with your desired ASCII art
+    `;
 
     const messageText = `[EXCOMMUNICADO – Contract]
 
@@ -165,37 +165,38 @@ Recognition: Over 90% of his body is mecha-enhanced, tower of metal, piercing ro
 Bounty: 5,000,000 Pixels
 
 Perks:
-
 Priority Status in Nexus-9 High Rollers Club
 Three (3) Top Tier Cybernetic Enhancements
 One (1) Token of Immunity for any crime up to Ω level within Nexus-9
-Terms:
 
+Terms:
 Proof of termination or capture required.
 Contract closes once subject is neutralized or contained.
 All engagements with Havoc are high risk.
 Digital interaction or engagement highly discouraged – he is a known tech manipulator.
 Full discretion is advised.
-Recent Sightings:
 
+Recent Sightings:
 The Neon Alley, Nexus-9
 The Deep Dive Bar
 The Chrome Wastes
-Background:
 
-Havoc, Nexus-9's most formidable legend. Notable for high-intensity heists, tech manipulation, and unprecedented violence. Highly skilled in both physical combat and tech warfare. Previous confrontations have led to mass casualties. This contract is not for the faint-hearted.
+Background:
+Havoc, Nexus-9's most formidable legend. Notable for high-intensity heists, tech manipulation, and unprecedented violence. 
+Highly skilled in both physical combat and tech warfare. Previous confrontations have led to mass casualties. This contract is not for the faint-hearted.
 
 Contract Issuer: The High Table of Nexus-9
 
 Endorsement:
+“The bounty for Havoc’s termination or capture is a testament to the threat he represents. This is the highest priority open contract in Nexus-9.
+Beware, many have tried, many have failed. His legend is built on the bones of those who have underestimated him.”
 
-“The bounty for Havoc’s termination or capture is a testament to the threat he represents. This is the highest priority open contract in Nexus-9. Beware, many have tried, many have failed. His legend is built on the bones of those who have underestimated him.”
-
-Note: Once accepted, the contractor acknowledges the extreme danger associated with this mission. The High Table of Nexus-9 assumes no responsibility for any harm or death that may occur.
+Note: Once accepted, the contractor acknowledges the extreme danger associated with this mission. The High Table of Nexus-9 assumes no 
+responsibility for any harm or death that may occur.
 
 Confirmation:
-
-Upon accepting this contract, one's fingerprint and retinal scan will be recorded. There is no turning back. All resources will be granted to aid the mission, within reason.`;
+Upon accepting this contract, one's fingerprint and retinal scan will be recorded. There is no turning back. 
+All resources will be granted to aid the mission, within reason.`;
 
     let index = 0;
     let artLines = asciiArt.split('\n');
@@ -206,7 +207,7 @@ Upon accepting this contract, one's fingerprint and retinal scan will be recorde
         if (lineIndex < artLines.length) {
             document.getElementById('message').innerText += artLines[lineIndex] + '\n';
             lineIndex++;
-            setTimeout(typeArt, 2);  // Adjust this value for the speed between lines
+            setTimeout(typeArt, 5);
         } else {
             setTimeout(clearArtAndTypeMessage, 2000);
         }
@@ -214,8 +215,8 @@ Upon accepting this contract, one's fingerprint and retinal scan will be recorde
 
     function clearArtAndTypeMessage() {
         document.getElementById('message').classList.remove('fullscreen');
-        document.getElementById('message').innerText = ''; // Clear the ASCII art
-        index = 0; // Reset the index for the main message
+        document.getElementById('message').innerText = '';
+        index = 0;
         typeMessage();
     }
 
@@ -223,35 +224,27 @@ Upon accepting this contract, one's fingerprint and retinal scan will be recorde
         if (index < messageText.length) {
             document.getElementById('message').innerText += messageText.charAt(index);
             index++;
-            autoScroll();
             setTimeout(typeMessage, 10);
         } else {
-            // Display buttons after message is fully typed
             document.getElementById('buttons').style.display = 'block';
         }
-    }
-
-    function autoScroll() {
-        document.body.scrollTop = document.body.scrollHeight;
-        document.documentElement.scrollTop = document.documentElement.scrollHeight;
     }
 
     function acceptContract() {
         document.getElementById('message').innerText = 'Loading...';
         setTimeout(() => {
             document.getElementById('message').innerText = 'Happy hunting';
-        }, 2000);  // Wait 2 seconds before showing "Happy hunting"
+        }, 2000);
     }
 
     function declineContract() {
         document.getElementById('message').innerText = 'Deleting...';
         setTimeout(() => {
-            document.getElementById('message').innerText = '';  // Clear the message
-            document.getElementById('buttons').style.display = 'none';  // Hide the buttons
-        }, 2000);  // Wait 2 seconds before deleting
+            document.getElementById('message').innerText = '';
+            document.getElementById('buttons').style.display = 'none';
+        }, 2000);
     }
 
-    // Start by typing out the ASCII art
     typeArt();
 
 </script>
