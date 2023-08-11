@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Display</title>
+    <style>
+        body {
+            background-color: black;
+            color: green;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            padding: 20% 10%;
+        }
+        #buttons {
+            display: none;
+        }
+        .button {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 15px;
+            border: 2px solid black;
+            cursor: pointer;
+        }
+        .button.decline {
+            background-color: red;
+            color: white;
+                  }
+        .button.accept {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<pre id="message"></pre>
+<div id="buttons">
+    <span class="button accept" onclick="acceptContract()">[ACCEPT]</span>
+    <span class="button decline" onclick="declineContract()">[DECLINE]</span>
+</div>
+<script>
+    const asciiArt = `
+NNNNNNNNNNNNNNNNNNNXXNWNNNNNNNNNNNNNNNNN
+NNNNNNNNNNWWWNXKKKx;'oXWWWWWWWNNNNNNNNNN
+NNNNNNNNWWWWWWO;..    :KWWWWWWWWWWWNNNNN
+NNNNNWWWWWWWWWWk'      ,0WWWWWWWWWWWNNNN
+NNNNWWWWWWWWWWKc,'      .kNWWWWWWWWWWWWN
+NWWWWWWWWWWWWO,  .,.     .dNWWWWWWWWWWWW
+WNWWWWWWWWWNx.    'c:.     cXMNKNWWWWWWW
+WWWWWWNXNWNo.    .xNWO'     ;KNkdXWNWWWW
+WWWWWXxkNXc     'OXdcOK;     'kNOdxxKWWW
+WWWWKdkN0;     ;0No  'OXl.    .dN0olo0WW
+WWNOoONk'     cXWd.   ,KNx.    .lXKdlkNW
+WNkdKNd.    .oNWx..:o' ;KWO'     ;KXxdXW
+WOxXXl.    .xNWk. lNM0' cXW0;     'ONkdK
+NNNK:     .;,ckl'oXMMWO;;xo,;,.    .xNXX
+WWO,     ,'   ,kNWMMMMMWKl.  .,.    .lXW
+Nx.    .oO;    .;oxkkkdc.    .dk'     ;0
+KdcllllkNWKc.               ,kNW0olllllk
+NWWWWWWWWWWNOl,.         .:xXWWWWWWWWWWW
+NNNWNNWWWWWWWWXkl;'..',:d0NWWWWWWWWWWNNN
+    `;  // Replace with your desired ASCII art
+
+    const messageText = `[EXCOMMUNICADO – Contract]
+
+Subject: Havoc
+
+Status: Open Contract
+
+Codename: "Steel Specter"
+
+Recognition: Over 90% of his body is mecha-enhanced, tower of metal, piercing robotic eyes, exudes an uncanny, metallic presence.
+
+Bounty: 5,000,000 Pixels
+
+Perks:
+
+Priority Status in Nexus-9 High Rollers Club
+Three (3) Top Tier Cybernetic Enhancements
+One (1) Token of Immunity for any crime up to Ω level within Nexus-9
+Terms:
+
+Proof of termination or capture required.
+Contract closes once subject is neutralized or contained.
+All engagements with Havoc are high risk.
+Digital interaction or engagement highly discouraged – he is a known tech manipulator.
+Full discretion is advised.
+Recent Sightings:
+
+The Neon Alley, Nexus-9
+The Deep Dive Bar
+The Chrome Wastes
+Background:
+
+Havoc, Nexus-9's most formidable legend. Notable for high-intensity heists, tech manipulation, and unprecedented violence. Highly skilled in both physical combat and tech warfare. Previous confrontations have led to mass casualties. This contract is not for the faint-hearted.
+
+Contract Issuer: The High Table of Nexus-9
+
+Endorsement:
+
+“The bounty for Havoc’s termination or capture is a testament to the threat he represents. This is the highest priority open contract in Nexus-9. Beware, many have tried, many have failed. His legend is built on the bones of those who have underestimated him.”
+
+Note: Once accepted, the contractor acknowledges the extreme danger associated with this mission. The High Table of Nexus-9 assumes no responsibility for any harm or death that may occur.
+
+Confirmation:
+
+Upon accepting this contract, one's fingerprint and retinal scan will be recorded. There is no turning back. All resources will be granted to aid the mission, within reason.`;
+
+    let index = 0;
+
+    function typeArt() {
+        if (index < asciiArt.length) {
+            document.getElementById('message').innerText += asciiArt.charAt(index);
+            index++;
+            setTimeout(typeArt, 1);
+        } else {
+            setTimeout(clearArtAndTypeMessage, 2000);
+        }
+    }
+
+    function clearArtAndTypeMessage() {
+        document.getElementById('message').innerText = ''; // Clear the ASCII art
+        index = 0; // Reset the index for the main message
+        typeMessage();
+    }
+
+    function typeMessage() {
+        if (index < messageText.length) {
+            document.getElementById('message').innerText += messageText.charAt(index);
+            index++;
+            autoScroll();
+            setTimeout(typeMessage, 25);
+        } else {
+            // Display buttons after message is fully typed
+            document.getElementById('buttons').style.display = 'block';
+        }
+    }
+
+    function autoScroll() {
+        document.body.scrollTop = document.body.scrollHeight;
+        document.documentElement.scrollTop = document.documentElement.scrollHeight;
+    }
+
+    function acceptContract() {
+        document.getElementById('message').innerText = 'Loading...';
+        setTimeout(() => {
+            document.getElementById('message').innerText = 'Happy hunting';
+        }, 2000);  // Wait 2 seconds before showing "Happy hunting"
+    }
+
+    function declineContract() {
+        document.getElementById('message').innerText = 'Deleting...';
+        setTimeout(() => {
+            document.getElementById('message').innerText = '';  // Clear the message
+            document.getElementById('buttons').style.display = 'none';  // Hide the buttons
+        }, 2000);  // Wait 2 seconds before deleting
+    }
+
+    // Start by typing out the ASCII art
+    typeArt();
+
+</script>
+</body>
+</html>
